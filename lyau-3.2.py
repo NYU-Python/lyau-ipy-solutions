@@ -1,8 +1,9 @@
 import os
 import sys
 
-args = sys.argv[1:]
-number, info, by = args.split(',')
+number = sys.argv[1]
+info = sys.argv[2]
+by = sys.argv[3]
 
 ###For this problem, I need to build a dictionary of dictionaries where:
 ###{a: {b:c, b2:c2}, a2:{b3:c3, b4:c4}}  'a' is the outer key (the 'by' field in the args),
@@ -49,7 +50,7 @@ def get_data(number, info, by):
     outerkeydict={'timestamp':0,'platform':1,'referring_url':2,'short_url_cname':3,'long_url':4,
     'geo_city_name':5, 'country_code':6, 'geo_region':7,'accept_language':8, 'timezone':9}
     outer_dict={}
-    for line in open('bitly_2.tsv').readlines()[1:]:
+    for line in open('bitly.tsv').readlines()[1:]:
         els = line.split('\t')
         if info == 'platform':   ###checks to see if the second arg was platform, if so calls the get_platform function
             new = get_platform(els[outerkeydict[info]])
